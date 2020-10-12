@@ -1,0 +1,16 @@
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\IServices.deps.json
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\IServices.dll
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\IServices.pdb
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\Common.dll
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\IRepository.dll
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\Model.dll
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\Common.pdb
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\IRepository.pdb
+E:\Git\CommonBaseRole\IServices\bin\Release\netcoreapp3.1\Model.pdb
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.csprojAssemblyReference.cache
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.csproj.CoreCompileInputs.cache
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.AssemblyInfoInputs.cache
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.AssemblyInfo.cs
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.csproj.CopyComplete
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.dll
+E:\Git\CommonBaseRole\IServices\obj\Release\netcoreapp3.1\IServices.pdb

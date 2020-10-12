@@ -1,0 +1,9 @@
+E:\Git\CommonBaseRole\Model\bin\Release\netcoreapp3.1\Model.deps.json
+E:\Git\CommonBaseRole\Model\bin\Release\netcoreapp3.1\Model.dll
+E:\Git\CommonBaseRole\Model\bin\Release\netcoreapp3.1\Model.pdb
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.csprojAssemblyReference.cache
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.csproj.CoreCompileInputs.cache
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.AssemblyInfoInputs.cache
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.AssemblyInfo.cs
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.dll
+E:\Git\CommonBaseRole\Model\obj\Release\netcoreapp3.1\Model.pdb

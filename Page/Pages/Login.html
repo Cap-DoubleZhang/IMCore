@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../plugins/loading/load.css" />
+</head>
+
+<body class="hold-transition login-page" style="margin-top: -200px;">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control mustinput" id="UserName" placeholder="用户名">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" autocomplete="off" class="form-control mustinput" id="Password"
+                        placeholder="密码">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="errorMsg" style="display:none;color:red;">
+
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="button" class="btn btn-info btn-block"
+                            onclick="userLogin();">登&nbsp;&nbsp;&nbsp;录</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <script src="../Scripts/master.js"></script>
+    <script src="../plugins/loading/load-min.js"></script>
+    <script src="../plugins/message/message.js"></script>
+    <script type="text/javascript">
+        $(function () {
+        });
+
+        document.onkeyup = function (e) {
+            var code = e.charCode || e.keyCode;
+            if (code == 13) {
+                userLogin();
+            }
+        }
+
+        //用户登录
+        function userLogin() {
+            var isPass = CheckMustInputData();
+            if (!isPass) {
+                return;
+            }
+            $.ajax({
+                type: "post",
+                url: api_Url + "api/Login",
+                data: JSON.stringify({
+                    "userName": $("#UserName").val(),
+                    "password": $("#Password").val(),
+                    //"remberMe": $("#remberMe").prop("checked") == true ? "1" : "0",
+                }),
+                dataType: "json",
+                contentType: "application/json",
+                async: true,
+                cache: false,
+                beforeSend: function () {
+                    HideMessage();
+                    //加载层-全屏
+                    $.mask_fullscreen();//1000为遮罩层显示时长，若不传则一直显示,须调用关闭方法
+                    //加载层-指定元素
+                    //$.mask_element('#test_mask', 5000);//1000为遮罩层显示时长，若不传则一直显示,须调用关闭方法
+                    //关闭指定遮罩层
+                    //$.mask_close('#test_mask');
+                },
+                success: function (jsonObj) {
+                    if (jsonObj.success) {
+                        localStorage.setItem("userInfoID", jsonObj.msg.userInfo.ID);
+                        window.location.href = "Index.html";
+
+                    } else {
+                        ShowMessage(jsonObj.msg);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowMessage(errorThrown);
+                },
+                complete: function () {
+                    //关闭所有遮罩层
+                    $.mask_close_all();
+                }
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

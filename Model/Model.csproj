@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DtoModel\BaseRole\SystemFunctionDto.cs" />
+    <Compile Remove="DtoModel\BaseRole\SystemRoleFunctionDto.cs" />
+    <Compile Remove="EntityModel\BaseRole\SystemFunction.cs" />
+    <Compile Remove="EntityModel\BaseRole\SystemRoleFunction.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlSugarCore" Version="5.0.0.10" />
+  </ItemGroup>
+
+</Project>
