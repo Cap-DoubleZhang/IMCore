@@ -77,6 +77,14 @@
             <param name="Id"></param>
             <returns></returns>
         </member>
+        <member name="M:CommonBaseRole.Controllers.BaseRole.SystemController.GetOtherUsers(System.String,System.String)">
+            <summary>
+            获取除当前登录用户外的其他用户
+            </summary>
+            <param name="Id">当前登录用户的ID</param>
+            <param name="keyword">搜索值</param>
+            <returns></returns>
+        </member>
         <member name="M:CommonBaseRole.Controllers.CommonController.GetReturnJSONP(System.String,System.Boolean)">
             <summary>
             接口处返回提示信息

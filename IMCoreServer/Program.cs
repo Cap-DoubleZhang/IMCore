@@ -20,7 +20,9 @@ namespace IMCoreServer
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                    .UseUrls("http://*:5000")
+                    .UseStartup<Startup>();
                 });
     }
 }

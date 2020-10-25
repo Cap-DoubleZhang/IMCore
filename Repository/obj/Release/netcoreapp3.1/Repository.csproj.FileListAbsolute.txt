@@ -1,0 +1,16 @@
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Repository.deps.json
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Repository.dll
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Repository.pdb
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Common.dll
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\IRepository.dll
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Model.dll
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Common.pdb
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\IRepository.pdb
+E:\Git\IMCore\Repository\bin\Release\netcoreapp3.1\Model.pdb
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.csprojAssemblyReference.cache
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfoInputs.cache
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.AssemblyInfo.cs
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CoreCompileInputs.cache
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.csproj.CopyComplete
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.dll
+E:\Git\IMCore\Repository\obj\Release\netcoreapp3.1\Repository.pdb

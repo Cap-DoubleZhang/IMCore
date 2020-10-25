@@ -107,16 +107,17 @@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    <ul class="nav nav-pills nav-sidebar flex-column userList" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <img src="../dist/img/user1-128x128.jpg"
+                                    class="img-circle HeadPortrait img-size-32 img-circle mr-3" alt="User Image">
                                 <p>
                                     Charts
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -213,7 +214,7 @@
                             <!-- DIRECT CHAT -->
                             <div class="card direct-chat direct-chat-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Direct Chat</h3>
+                                    <h3 class="card-title weChatTitle">Direct Chat</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -405,10 +406,11 @@
                                 <div class="card-footer">
                                     <form action="#" method="post">
                                         <div class="input-group">
-                                            <input type="text" name="message" placeholder="Enter...."
-                                                class="form-control">
+                                            <input type="text" id="message" name="message" data-ReceiveId=""
+                                                placeholder="Enter...." class="form-control">
                                             <span class="input-group-append">
-                                                <button type="button" class="btn btn-primary">Send</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="SendMessage()">Send</button>
                                             </span>
                                         </div>
                                     </form>
@@ -462,7 +464,7 @@
     var gsocket = null;
     $(function () {
         if (localStorage.getItem("userInfoID") == null || localStorage.getItem("userInfoID") == "null") {
-            location.href = "Login.html";
+            location.href = "Pages/Login.html";//Pages/Login.html
         }
         var _self = this;
         $.ajax({
@@ -503,8 +505,33 @@
                     gsocket.onmessage = function (e) {
                         try {
                             var msg = JSON.parse(e.data);
-                            //_self.onmessage.call(_self, msg);
-                            $(".IMCoreHistory").append("<p>" + msg.sendMsg + "</p>");
+                            $.ajax({
+                                type: "get",
+                                url: api_Url + "Users/" + msg.SendId,
+                                dataType: "json",
+                                contentType: "application/json",
+                                async: true,
+                                cache: false,
+                                success: function (result) {
+                                    if (result.success) {
+                                        let userName = IsNull(result.UserInfo.UserShowName) ? result.UserInfo.UserShowName : j.UserLoginName;
+                                        let headUrl = IsNull(result.UserInfo.HeadPortrait) ? result.UserInfo.HeadPortrait : "../dist/img/user1-128x128.jpg";
+                                        let str = '<div class="direct-chat-msg">' +
+                                            '<div class="direct-chat-infos clearfix">' +
+                                            '<span class="direct-chat-name float-left">' + userName + '</span>' +
+                                            '<span class="direct-chat-timestamp float-right">' + GetCurrentTime() + '</span>' +
+                                            '</div>' +
+                                            '<img class="direct-chat-img" src="' + headUrl + '" alt="message user image">' +
+                                            '<div class="direct-chat-text">' + msg.sendMsg + '</div>' +
+                                            '</div>';
+                                        $(".direct-chat-messages").append(str);
+                                    }
+                                },
+                                error: function (error) {
+
+                                }
+                            });
+
                         } catch (e) {
                             console.log(e);
                             return;
@@ -539,6 +566,7 @@
 
         });
 
+        //获取当前用户登录数据
         $.ajax({
             type: "get",
             url: api_Url + "Users/" + localStorage.getItem("userInfoID"),
@@ -548,10 +576,10 @@
             cache: false,
             success: function (jsonObj) {
                 if (jsonObj.success) {
-                    if (jsonObj.msg.UserInfo.UserShowName != "" && jsonObj.msg.UserInfo.UserShowName != null && jsonObj.msg.UserInfo.UserShowName != undefined) {
+                    if (IsNull(jsonObj.msg.UserInfo.UserShowName)) {
                         $(".UserName").text(jsonObj.msg.UserInfo.UserShowName);
                     }
-                    if (jsonObj.msg.UserInfo.HeadPortrait != "" && jsonObj.msg.UserInfo.HeadPortrait != null && jsonObj.msg.UserInfo.HeadPortrait != undefined) {
+                    if (IsNull(jsonObj.msg.UserInfo.HeadPortrait)) {
                         $(".HeadPortrait").attr("src", jsonObj.msg.UserInfo.HeadPortrait);
                     }
 
@@ -569,6 +597,48 @@
                 });
             }
         });
+
+        $.ajax({
+            type: "get",
+            url: api_Url + "api/System/GetOtherUsers/" + localStorage.getItem("userInfoID"),
+            dataType: "json",
+            contentType: "application/json",
+            async: true,
+            cache: false,
+            success: function (jsonObj) {
+                if (jsonObj.success) {
+                    let str = "";
+                    $.each(jsonObj.msg, function (i, j) {
+                        let userName = IsNull(j.UserInfo.UserShowName) ? j.UserInfo.UserShowName : j.UserLoginName;
+                        let headUrl = IsNull(j.UserInfo.HeadPortrait) ? j.UserInfo.HeadPortrait : "../dist/img/user1-128x128.jpg";
+                        str += '<li class="nav-item" data-Id="' + j.ID + '" data-UserName="' + userName + '">' +
+                            '<a href="javascript:void(0);" class="nav-link">' +
+                            '<img src="' + headUrl + '" class="img-circle HeadPortrait img-size-32 img-circle mr-3" alt="User Image">' +
+                            '<p>' + userName + '</p>' +
+                            '</a>' +
+                            '</li>';
+                    });
+                    $(".userList").empty();
+                    $(".userList").append(str);
+                } else {
+                    $.message({
+                        message: jsonObj.msg,
+                        type: 'error'
+                    });
+                }
+            },
+            error: function () {
+                $.message({
+                    message: "服务器连接超时.",
+                    type: 'error'
+                });
+            }
+        });
+
+        $(document).on("click", ".nav-item", function () {
+            $(".weChatTitle").text("与" + $(this).attr("data-UserName") + "聊天中");
+            $("#message").attr("data-ReceiveId", $(this).attr("data-Id"));
+        });
     });
 
     function logout() {
@@ -577,12 +647,26 @@
     }
 
     function SendMessage() {
+        if ($("#message").val() == "") {
+            $.message({
+                message: "请输入内容.",
+                type: 'error'
+            });
+            return;
+        }
+        if ($("#message").attr("data-ReceiveId") == "") {
+            $.message({
+                message: "请先选择用户.",
+                type: 'error'
+            });
+            return;
+        }
         $.ajax({
             type: "post",
             url: api_Url + "api/IM/SendMessage",
             data: JSON.stringify({
                 "SendId": localStorage.getItem("userInfoID"),
-                "ReceiveId": "8CA4551D-F77C-4A97-820A-3E350EDBCC5F",
+                "ReceiveId": $("#message").attr("data-ReceiveId"),
                 "SendType": 1,
                 "Message": $("#message").val(),
             }),
@@ -595,6 +679,16 @@
                     message: "发送成功",
                     type: 'success'
                 });
+                let str = '<div class="direct-chat-msg right">' +
+                    '<div class="direct-chat-infos clearfix">' +
+                    '<span class="direct-chat-name float-left">Alexander Pierce</span>' +
+                    '<span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>' +
+                    '</div>' +
+                    '<img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="message user image">' +
+                    '<div class="direct-chat-text">' + $("#message").val() + '</div>' +
+                    '</div>';
+                $(".direct-chat-messages").append(str);
+                $("#message").val("");
             },
             error: function () {
                 $.message({

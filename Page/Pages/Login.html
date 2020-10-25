@@ -116,7 +116,7 @@
                 success: function (jsonObj) {
                     if (jsonObj.success) {
                         localStorage.setItem("userInfoID", jsonObj.msg.userInfo.ID);
-                        window.location.href = "Index.html";
+                        window.location.href = "Index.html";//Pages/Index.html
 
                     } else {
                         ShowMessage(jsonObj.msg);

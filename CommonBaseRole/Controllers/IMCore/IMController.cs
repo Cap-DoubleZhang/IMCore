@@ -85,5 +85,7 @@ namespace CommonBaseRole.Controllers.IMCore
             List<AllMsgList> allMsgLists = await _AllMsgListServices.GetEntity();
             return GetReturnJSONP(allMsgLists.Where(a => a.SendId == dto.FrientId && a.ReceiveId == dto.CurrentId));
         }
+
+        
     }
 }

@@ -20,9 +20,11 @@ namespace CommonBaseRole.ExtensionsConfigure
             {
                 op.AddPolicy(policyDefaultValue, x =>
                 {
-                    x.AllowAnyOrigin();
-                    x.AllowAnyMethod();
-                    x.AllowAnyHeader();
+                    x
+                    .WithOrigins("http://140.143.121.93:81", "http://192.168.1.4")
+                    .AllowAnyHeader()
+             .AllowAnyMethod()
+             .AllowCredentials();
                 });
             });
         }

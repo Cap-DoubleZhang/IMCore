@@ -1,4 +1,4 @@
-﻿var api_Url="http://192.168.1.4:5001/";
+﻿var api_Url = "http://localhost:5001/";//http://140.143.121.93:5001/
 
 //显示错误信息
 function ShowMessage(msg) {
@@ -18,7 +18,7 @@ function CheckMustInputData() {
     $(".mustinput").each(function () {
         if ($(this).val() == "") {
             $(this).focus();
-            $(this).attr("style","border:1px soild red");
+            $(this).attr("style", "border:1px soild red");
             var htmlStr = "<span style='color:red;' class='mustInputMessage'>请输入" + $(this).attr("placeholder") + "</span>";
             $(this).parent().append(htmlStr);
             isTrue = false;
@@ -40,12 +40,12 @@ function CheckMustInputData() {
 
 /*弹出层*/
 /*
-	参数解释：
-	title	标题
-	url		请求的url
-	id		需要操作的数据id
-	w		弹出层宽度（缺省调默认值）
-	h		弹出层高度（缺省调默认值）
+    参数解释：
+    title	标题
+    url		请求的url
+    id		需要操作的数据id
+    w		弹出层宽度（缺省调默认值）
+    h		弹出层高度（缺省调默认值）
 */
 function layer_show(title, url, w, h) {
     if (title == null || title == '') {
@@ -75,4 +75,23 @@ function layer_show(title, url, w, h) {
 function layer_close() {
     var index = parent.layer.getFrameIndex(window.name);
     parent.layer.close(index);
+}
+
+//判断传入值是否为空
+function IsNull(val) {
+    if (val == "" || val == null || val == undefined || val == "null" || val == "undefined") {
+        return false;
+    }
+    return true;
+}
+
+//获取当前时间
+function GetCurrentTime() {
+    let d = new Date();
+    let hour = d.getHours();
+    let min = d.getMinutes();
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    return d.getFullYear() + "-" + d.getMonth() + 1 + "-" + d.getDate() + " " + hour + ":" + min;
+
 }

@@ -7,3 +7,12 @@ E:\Git\CommonBaseRole\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfoInputs
 E:\Git\CommonBaseRole\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfo.cs
 E:\Git\CommonBaseRole\Common\obj\Release\netcoreapp3.1\Common.dll
 E:\Git\CommonBaseRole\Common\obj\Release\netcoreapp3.1\Common.pdb
+E:\Git\IMCore\Common\bin\Release\netcoreapp3.1\Common.deps.json
+E:\Git\IMCore\Common\bin\Release\netcoreapp3.1\Common.dll
+E:\Git\IMCore\Common\bin\Release\netcoreapp3.1\Common.pdb
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.csprojAssemblyReference.cache
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.AssemblyInfo.cs
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.dll
+E:\Git\IMCore\Common\obj\Release\netcoreapp3.1\Common.pdb

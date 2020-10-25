@@ -58,5 +58,7 @@ namespace Common
         /// Redis 缓存随机小时
         /// </summary>
         public static int RedisExpTime = new Random().Next(Convert.ToInt32(CommonHelper.app(new string[] { "AppSetting", "RedisSetting", "StartTime" })), Convert.ToInt32(CommonHelper.app(new string[] { "AppSetting", "RedisSetting", "EndTime" })));
+
+
     }
 }

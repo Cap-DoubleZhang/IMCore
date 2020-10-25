@@ -24,6 +24,8 @@ namespace CommonBaseRole.Controllers.BaseRole
     [ApiController]
     public class SystemController : CommonController
     {
+        public string Ip => this.Request.Headers["X-Real-IP"].FirstOrDefault() ?? this.Request.HttpContext.Connection.RemoteIpAddress.ToString();
+
         private IAdminModuleService AdminModuleService;
         private ISystemRoleService SystemRoleService;
         private ISystemUserService SystemUserService;
@@ -479,6 +481,51 @@ namespace CommonBaseRole.Controllers.BaseRole
                 return BadRequest(json);
             }
             return Ok(json);
+        }
+        #endregion
+
+        #region 获取除当前登录用户外的其他用户
+        /// <summary>
+        /// 获取除当前登录用户外的其他用户
+        /// </summary>
+        /// <param name="Id">当前登录用户的ID</param>
+        /// <param name="keyword">搜索值</param>
+        /// <returns></returns>
+        [HttpGet("GetOtherUsers/{Id}")]
+        public async Task<object> GetOtherUsers(string Id, string keyword = "")
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+            {
+                return GetReturnJSONP("必要参数不能为空.");
+            }
+            PageModel pm = new PageModel()
+            {
+                CurrentPage = 1,
+                PageSize = 100,
+            };
+            pm.Condition.Add(new SearchCondition()
+            {
+                ConditionField = "su.ID",
+                SearchType = SearchType.NotEqual,
+                ConditionValue1 = Id,
+            });
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                pm.Condition.Add(new SearchCondition()
+                {
+                    ConditionField = "sui.UserShowName",
+                    SearchType = SearchType.Like,
+                    ConditionValue1 = keyword,
+                });
+                pm.Condition.Add(new SearchCondition()
+                {
+                    ConditionField = "su.UserLoginName",
+                    SearchType = SearchType.Like,
+                    ConditionValue1 = keyword,
+                });
+            }
+            List<SystemUser> systemUsers = await SystemUserService.GetSystemUsers(pm);
+            return GetReturnJSONP(systemUsers);
         }
         #endregion
         #endregion

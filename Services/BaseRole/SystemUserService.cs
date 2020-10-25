@@ -15,7 +15,7 @@ namespace Services.BaseRole
         public SystemUserService(ISystemUserRepository systemUserRepository)
         {
             this.SystemUserRepository = systemUserRepository;
-            //base.baseRepository = systemUserRepository;
+            base.baseRepository = systemUserRepository;
         }
 
         /// <summary>

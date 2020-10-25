@@ -23,7 +23,7 @@ namespace CommonBaseRole
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                    .UseUrls("http://192.168.1.4:5001")
+                    .UseUrls("http://*:5001")
                     .UseStartup<Startup>();
                 });
     }

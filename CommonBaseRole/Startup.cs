@@ -28,11 +28,9 @@ namespace CommonBaseRole
 {
     public class Startup
     {
-        private ISystemUserService SystemUserService;
-        public Startup(IConfiguration configuration, ISystemUserService systemUserService)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            SystemUserService = systemUserService;
         }
 
         private const string _PolicyDefaultValue = "IMCore";
@@ -137,13 +135,13 @@ namespace CommonBaseRole
                 app.UseDeveloperExceptionPage();
             }
 
-            #region Swagger
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint($"/swagger/v1/swagger.json", ".NET Core 3.1 V1");
-            });
-            #endregion
+            //#region Swagger
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint($"/swagger/v1/swagger.json", ".NET Core 3.1 V1");
+            //});
+            //#endregion
 
             #region Cors
             app.UseCors(_PolicyDefaultValue);
@@ -159,29 +157,29 @@ namespace CommonBaseRole
 
             ImHelper.Initialization(new ImClientOptions
             {
-                Redis = new CSRedis.CSRedisClient("127.0.0.1:6379,poolsize=5"),
-                Servers = new[] { "127.0.0.1:5000" }
+                Redis = new CSRedis.CSRedisClient("62.234.194.83,poolsize=5"),
+                Servers = new[] { CommonHelper.app(new string[] { "IMCore", "Servers" }),
+        }
             });
 
             ImHelper.EventBus(
                 async t =>
                 {
-
-                    SystemUser systemUser = await SystemUserService.GetSystemUserByID(t.clientId.ToString());
+                    SystemUser systemUser = await app.ApplicationServices.GetService<ISystemUserService>().GetSystemUserByID(t.clientId.ToString());
                     systemUser.IsOnline = 1;
                     systemUser.LastLoginIP = "";
                     systemUser.LastLoginTime = DateTime.Now;
                     systemUser.LoginTimes += 1;
-                    await SystemUserService.SaveEntityInfo(systemUser);
+                    await app.ApplicationServices.GetService<ISystemUserService>().SaveEntityInfo(systemUser);
                     Console.WriteLine(t.clientId + "上线了");
 
 
                 },
                 async t =>
                 {
-                    SystemUser systemUser = await SystemUserService.GetSystemUserByID(t.clientId.ToString());
+                    SystemUser systemUser = await app.ApplicationServices.GetService<ISystemUserService>().GetSystemUserByID(t.clientId.ToString());
                     systemUser.IsOnline = 0;
-                    await SystemUserService.SaveEntityInfo(systemUser);
+                    await app.ApplicationServices.GetService<ISystemUserService>().SaveEntityInfo(systemUser);
                     Console.WriteLine(t.clientId + "下线了");
                 });
 

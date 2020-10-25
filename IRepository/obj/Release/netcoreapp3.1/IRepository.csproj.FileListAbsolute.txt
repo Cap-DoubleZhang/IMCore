@@ -12,3 +12,17 @@ E:\Git\CommonBaseRole\IRepository\obj\Release\netcoreapp3.1\IRepository.Assembly
 E:\Git\CommonBaseRole\IRepository\obj\Release\netcoreapp3.1\IRepository.csproj.CopyComplete
 E:\Git\CommonBaseRole\IRepository\obj\Release\netcoreapp3.1\IRepository.dll
 E:\Git\CommonBaseRole\IRepository\obj\Release\netcoreapp3.1\IRepository.pdb
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\IRepository.deps.json
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\IRepository.dll
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\IRepository.pdb
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\Common.dll
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\Model.dll
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\Common.pdb
+E:\Git\IMCore\IRepository\bin\Release\netcoreapp3.1\Model.pdb
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.csprojAssemblyReference.cache
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.AssemblyInfoInputs.cache
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.AssemblyInfo.cs
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.csproj.CoreCompileInputs.cache
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.csproj.CopyComplete
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.dll
+E:\Git\IMCore\IRepository\obj\Release\netcoreapp3.1\IRepository.pdb
